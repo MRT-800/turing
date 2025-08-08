@@ -31,13 +31,13 @@ export default function ContactPage() {
                 <strong>Phone:</strong> +977 9844561238
               </p>
                 <div className="flex justify-center space-x-6 text-2xl mt-5 ml-[-190px] ">
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors duration-200">
+                  <a href="https://x.com/" className="text-muted-foreground hover:text-primary transition-colors duration-200">
                       <FaTwitter />
                   </a>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors duration-200">
+                  <a href="https://www.facebook.com/" className="text-muted-foreground hover:text-primary transition-colors duration-200">
                       <FaFacebook />
                   </a>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors duration-200">
+                  <a href="https://www.instagram.com/" className="text-muted-foreground hover:text-primary transition-colors duration-200">
                       <FaInstagram />
                   </a>
                 </div>
