@@ -35,7 +35,7 @@ export default function PortfolioPage() {
         <PortfolioCard
           title="Thermotech"
           description="Thermotech provides reliable and professional installation of air conditioning and ventilation systems for both homes and commercial businesses. Whether you're upgrading your home comfort or outfitting a large office space, our experienced team ensures efficient, high-quality service tailored to your needs. With a focus on performance, energy efficiency, and long-term value, Thermotech delivers climate control solutions you can trust—on time and within budget."
-          link="https://thermotech.com"
+          link="https://thermotech.com.np/"
           link2="https://facebook.com/thermotech"
           link3="https://instagram.com/thermotech"
           link4="https://x.com/thermotech"
@@ -43,7 +43,7 @@ export default function PortfolioPage() {
         <PortfolioCard
           title="Dabn"
           description="Dabn is a trusted provider of electrical solutions, specializing in wiring, installation, and maintenance of home appliances. Our skilled technicians are dedicated to ensuring safety, efficiency, and reliability in every project. From complete electrical setups to appliance repairs, Dabn delivers quality service that keeps your home and business running smoothly—on within budget. We combine expertise with a customer-first approach to ensure every job exceeds expectations."
-          link="https://dabn.com"
+          link="https://dabn.com.np/"
           link2="https://facebook.com/dabn"
           link3="https://instagram.com/dabn"
           link4="https://x.com/dabn"
@@ -126,17 +126,17 @@ function PortfolioCard({
 const reviews = [
   {
     text: "Working with this team was an absolute pleasure. They exceeded our expectations in every way.",
-    author: "Sarah Lee",
-    company: "TechNova Inc.",
+    author: "Hari Bhattarai",
+    company: "Aletheia Counselling",
   },
   {
     text: "Professional, efficient, and results-driven. Our project was delivered ahead of schedule and under budget.",
-    author: "James Carter",
-    company: "GreenCore Solutions",
+    author: "Debendra Bartaula",
+    company: "Thermotech",
   },
   {
     text: "The communication and quality of work were top-notch. Highly recommended!",
-    author: "Amanda Rivera",
-    company: "BrightPath Labs",
+    author: "Bhup Raj Neupane",
+    company: "Dban",
   },
 ];
