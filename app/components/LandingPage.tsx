@@ -1,71 +1,94 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import React from "react";
+import { motion } from "framer-motion";
+import { FaMicroscope, FaBrain, FaShieldAlt } from "react-icons/fa";
 
-const researchUpdates = [
-    "Breakthrough in AI-driven cancer detection!",
-    "New quantum computing model speeds up simulations.",
-    "Scientists achieve record efficiency in solar panels.",
-    "Blockchain ensures research data integrity worldwide.",
+const features = [
+  {
+    icon: <FaMicroscope className="text-4xl text-[#00ff73]" />,
+    title: "Live Research Updates",
+    description: "Stay up to date with cutting-edge discoveries in real time.",
+  },
+  {
+    icon: <FaBrain className="text-4xl text-[#00ff73]" />,
+    title: "AI-Powered Insights",
+    description: "Personalized research recommendations using machine learning.",
+  },
+  {
+    icon: <FaShieldAlt className="text-4xl text-[#00ff73]" />,
+    title: "Blockchain Security",
+    description: "Ensuring research integrity with decentralized verification.",
+  },
 ];
 
 const RDShowcase = () => {
-    const [index, setIndex] = useState(0);
+  return (
+    <section className="relative bg-[#0a0f1a] text-white py-20 px-6">
+      <div className="container mx-auto max-w-7xl">
+        {/* Heading Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+            Innovating the Future of{" "}
+            <span className="text-[#00ff73]">Research & Development</span>
+          </h2>
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            Cutting-edge technology solutions tailored for breakthrough innovation.
+          </p>
+        </motion.div>
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setIndex((prevIndex) => (prevIndex + 1) % researchUpdates.length);
-        }, 3000);
-        return () => clearInterval(interval);
-    }, []);
-
-    return (
-        <div className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center px-6 py-20">
-            {/* Title Animation */}
-            <motion.h1
-                initial={{ opacity: 0, y: -50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold text-center leading-tight"
-            >
-                Innovating the Future of 
-                <span className="text-primary block mt-2">Research & Development</span>
-            </motion.h1>
-
-            {/* Scrolling Research Updates */}
+        {/* Features Grid */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={{
+            visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+            hidden: { opacity: 0 },
+          }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
+          {features.map((feature, i) => (
             <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="mt-8 text-lg md:text-xl text-primary/80 font-medium"
+              key={i}
+              whileHover={{ scale: 1.05 }}
+              variants={{
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+                hidden: { opacity: 0, y: 50 },
+              }}
+              className="bg-[#1e2a47] rounded-xl p-8 text-center flex flex-col items-center shadow-lg border border-gray-700"
             >
-                {researchUpdates[index]}
+              <div className="mb-6">{feature.icon}</div>
+              <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
+              <p className="text-gray-400">{feature.description}</p>
             </motion.div>
+          ))}
+        </motion.div>
 
-            {/* Feature Cards */}
-            <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
-                {features.map((feature, i) => (
-                    <motion.div
-                        key={i}
-                        whileHover={{ scale: 1.03, translateY: -5 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="bg-card p-8 rounded-xl shadow-lg border border-border/50 backdrop-blur-sm"
-                    >
-                        <h2 className="text-xl font-semibold mb-3 text-primary">{feature.title}</h2>
-                        <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
-                    </motion.div>
-                ))}
-            </div>
-        </div>
-    );
+        {/* Call to Action Link */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="text-center mt-16"
+        >
+          <a
+            href="/contact"
+            className="inline-block px-8 py-4 bg-[#00ff73] text-black rounded-full font-semibold transition-all duration-300 hover:bg-[#00e666] shadow-lg"
+          >
+            Get Started
+          </a>
+        </motion.div>
+      </div>
+    </section>
+  );
 };
-
-const features = [
-    { title: "Live Research Updates", description: "Stay up to date with cutting-edge discoveries in real time." },
-    { title: "AI-Powered Insights", description: "Personalized research recommendations using machine learning." },
-    { title: "Blockchain Security", description: "Ensuring research integrity with decentralized verification." },
-];
 
 export default RDShowcase;

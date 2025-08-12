@@ -16,9 +16,9 @@ export default function Home() {
         <Projects />
       </section>
 
-      <section id="contact" className="min-h-screen relative">
+     {/*<section id="contact" className="min-h-screen relative">
         <ContactPage />
-      </section>
+      </section>*/}
 
       {/* <Footer /> */}
     </main>

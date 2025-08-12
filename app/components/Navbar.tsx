@@ -1,163 +1,198 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { motion } from "framer-motion";
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/product", label: "Product" },
+  { href: "/services", label: "Services" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/contact", label: "Contact Us" },
+];
 
 const Navbar = () => {
+  const pathname = usePathname(); // current route
   const [isOpen, setIsOpen] = useState(false);
-  const [theme, setTheme] = useState("light");
+  const [animateContact, setAnimateContact] = useState(false);
+
+  const handleNavLinkClick = () => {
+    setIsOpen(false);
+  };
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-    const initialTheme = savedTheme || systemTheme;
-    setTheme(initialTheme);
-    document.documentElement.classList.toggle("dark", initialTheme === "dark");
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAnimateContact(true);
+      setTimeout(() => setAnimateContact(false), 1000);
+    }, 5000);
+    return () => clearInterval(interval);
   }, []);
 
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("dark");
-  };
-
-  const scrollToSection = (sectionId: string) => {
-    setIsOpen(false);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
-
   return (
-    <nav className="bg-background/80 backdrop-blur-md border-b border-border/40 fixed w-full top-0 z-50">
-      <div className="container mx-auto flex justify-between items-center py-4 px-6">
-        <Link
-          href="/"
-          className="text-xl font-bold text-primary hover:text-primary/80 transition-colors duration-200"
-        >
-          Turing R&D
-        </Link>
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="fixed top-0 w-full z-50 bg-[#1e2a47] border-b border-gray-700 shadow-lg"
+    >
+      <div className="container mx-auto flex items-center justify-between px-6 py-4">
+        {/* Logo + Text always on left */}
+        <a href="/" className="flex items-center gap-3 group">
+          <img
+            src="/logo.png"
+            alt="Turing R&D"
+            className="w-12 h-10"
+          />
+          <span className="font-semibold tracking-wide text-lg text-white group-hover:text-[#00ff73] transition-colors">
+            Turing R&D
+          </span>
+        </a>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center space-x-8 ml-auto">
-          <Link
-            href="/about"
-            className="text-muted-foreground hover:text-primary transition-colors duration-200"
-          >
-            About
-          </Link>
-          <Link
-            href="/product"
-            className="text-muted-foreground hover:text-primary transition-colors duration-200"
-          >
-            Product
-          </Link>
-          <Link
-            href="/services"
-            className="text-muted-foreground hover:text-primary transition-colors duration-200"
-          >
-            Services
-          </Link>
-          <Link
-            href="/portfolio"
-            className="text-muted-foreground hover:text-primary transition-colors duration-200"
-          >
-            Portfolio
-          </Link>
-          <Link
-            href="/contact"
-            className="text-muted-foreground hover:text-primary transition-colors duration-200"
-          >
-            Contact
-          </Link>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            className="text-primary hover:text-primary/80"
-          >
-            {theme === "light" ? (
-              <Moon className="h-5 w-5" />
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            const isContact = link.label === "Contact Us";
+
+            return isContact ? (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`px-4 py-2 rounded-full font-medium transition-colors duration-200 relative
+                  bg-[#00ff73] text-[#0a0f1a] hover:bg-opacity-80 shadow-sm
+                  ${isActive ? "ring-2 ring-[#00ff73]/50" : ""}
+                  ${animateContact ? "animate-borderPulse" : ""}
+                `}
+              >
+                {link.label}
+              </a>
             ) : (
-              <Sun className="h-5 w-5" />
-            )}
-          </Button>
+              <a
+                key={link.href}
+                href={link.href}
+                className={`relative font-medium tracking-wide transition-colors duration-200
+                  ${isActive ? "text-[#00ff73]" : "text-gray-400 hover:text-[#00ff73]"}
+                `}
+              >
+                {link.label}
+                {isActive && (
+                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-[#00ff73] rounded-full"></span>
+                )}
+              </a>
+            );
+          })}
         </div>
 
-        {/* Mobile Toggle */}
-        <div className="md:hidden flex items-center gap-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            className="text-primary hover:text-primary/80"
+        {/* Mobile Controls: Contact Us and Hamburger aligned right */}
+        <div className="flex md:hidden items-center gap-3 ml-auto">
+          {/* Contact Us button */}
+          <a
+            href="/contact"
+            className={`px-4 py-2 rounded-full font-medium bg-[#00ff73] text-[#0a0f1a] hover:bg-opacity-80 shadow-sm transition ${
+              pathname === "/contact" ? "ring-2 ring-[#00ff73]/50" : ""
+            } ${animateContact ? "animate-borderPulse" : ""}`}
+            aria-label="Contact Us"
           >
-            {theme === "light" ? (
-              <Moon className="h-5 w-5" />
+            Contact Us
+          </a>
+
+          {/* Hamburger Icon */}
+          <button
+            onClick={() => setIsOpen((prev) => !prev)}
+            className="rounded-full p-2 hover:bg-gray-700 transition text-gray-400 hover:text-[#00ff73]"
+            aria-label="Toggle mobile menu"
+          >
+            {isOpen ? (
+              <FaTimes className="h-5 w-5" />
             ) : (
-              <Sun className="h-5 w-5" />
+              <FaBars className="h-5 w-5" />
             )}
-          </Button>
-          <Button
-            variant="ghost"
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-primary hover:text-primary/80"
-          >
-            {isOpen ? <X /> : <Menu />}
-          </Button>
+          </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden flex flex-col space-y-4 p-6 bg-background/95 backdrop-blur-md border-t border-border/40">
-          <Link
-            href="/about"
-            onClick={() => setIsOpen(false)}
-            className="text-muted-foreground hover:text-primary transition-colors duration-200 text-left"
+      {/* Mobile Backdrop */}
+      <div
+        className={`fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 z-40 ${
+          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setIsOpen(false)}
+      />
+
+      {/* Mobile Drawer */}
+      <aside
+        className={`fixed top-0 right-0 h-screen w-72 bg-[#0a0f1a] shadow-lg border-l border-gray-700 p-6 transform transition-transform duration-300 z-50 flex flex-col ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex items-center justify-between mb-8">
+          <a
+            href="/"
+            onClick={handleNavLinkClick}
+            className="flex items-center gap-2"
           >
-            About
-          </Link>
-          <Link
-            href="/product"
+            <img
+              src="/logo.png"
+              alt="Turing R&D"
+              className="w-12 h-8"
+            />
+            <span className="font-semibold text-lg text-[#00ff73]">
+              Turing R&D
+            </span>
+          </a>
+          <button
             onClick={() => setIsOpen(false)}
-            className="text-muted-foreground hover:text-primary transition-colors duration-200 text-left"
+            className="rounded-full p-2 hover:bg-gray-700 transition text-gray-400 hover:text-[#00ff73]"
+            aria-label="Close mobile menu"
           >
-            Product
-          </Link>
-          <Link
-            href="/services"
-            onClick={() => setIsOpen(false)}
-            className="text-muted-foreground hover:text-primary transition-colors duration-200 text-left"
-          >
-            Services
-          </Link>
-          <Link
-            href="/portfolio"
-            onClick={() => setIsOpen(false)}
-            className="text-muted-foreground hover:text-primary transition-colors duration-200 text-left"
-          >
-            Portfolio
-          </Link>
-          <Link
-            href="/contact"
-            onClick={() => setIsOpen(false)}
-            className="text-muted-foreground hover:text-primary transition-colors duration-200 text-left"
-          >
-            Contact
-          </Link>
+            <FaTimes />
+          </button>
         </div>
-      )}
-    </nav>
+
+        <nav className="flex flex-col gap-6">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={handleNavLinkClick}
+                className={`text-lg font-medium tracking-wide transition-colors ${
+                  isActive ? "text-[#00ff73]" : "text-gray-400 hover:text-[#00ff73]"
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
+        </nav>
+      </aside>
+
+      <style jsx global>{`
+        @keyframes borderPulse {
+          0%,
+          100% {
+            box-shadow: 0 0 0 0 rgba(0, 255, 115, 0.6);
+          }
+          50% {
+            box-shadow: 0 0 0 4px rgba(0, 255, 115, 0.3);
+          }
+        }
+        .animate-borderPulse {
+          animation: borderPulse 1s ease-in-out;
+        }
+      `}</style>
+    </motion.nav>
   );
 };
 

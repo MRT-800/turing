@@ -1,4 +1,6 @@
-// app/services/page.tsx
+"use client";
+
+import React from "react";
 import {
   ShieldCheck,
   Code,
@@ -15,13 +17,9 @@ import {
   CheckCircle,
   Palette
 } from "lucide-react";
-import { Metadata } from "next";
+import { motion } from "framer-motion";
 
-export const metadata: Metadata = {
-  title: "Our Services",
-  description: "Explore the services we offer to help grow your business.",
-};
-
+// Mock data for services
 const services = [
   {
     icon: <Code className="h-8 w-8 text-blue-500" />,
@@ -80,27 +78,56 @@ const services = [
   },
 ];
 
+// Animation variants for the service cards
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
 export default function ServicesPage() {
   return (
-    <main className="max-w-5xl mx-auto px-6 py-16">
-      <h1 className="text-4xl font-bold text-center mb-16">Our Services</h1>
-      <p className="text-lg text-gray-400 mb-12 max-w-3xl">
-        At Turing Research, we deliver innovative, reliable, and future-ready digital solutions 
-        to help businesses thrive in a competitive world.  
-        From design and development to AI-powered automation, our services are tailored to drive success.
-      </p>
+    <main className="min-h-screen bg-[#0a0f1a] text-gray-200 py-20 px-4 md:px-8">
+      <div className="container mx-auto">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl md:text-5xl font-extrabold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#00ff73] to-[#4c75ff]"
+        >
+          Our Services
+        </motion.h1>
+        
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="text-lg text-gray-400 text-center mb-16 max-w-3xl mx-auto"
+        >
+          At Turing Research, we deliver innovative, reliable, and future-ready digital solutions
+          to help businesses thrive in a competitive world. From design and development to
+          AI-powered automation, our services are tailored to drive success.
+        </motion.p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {services.map((service, index) => (
-          <div
-            key={index}
-            className="bg-gray-900 p-6 rounded-xl shadow hover:shadow-lg transition"
-          >
-            <div className="mb-4">{service.icon}</div>
-            <h3 className="text-xl font-semibold mb-2 text-white">{service.title}</h3>
-            <p className="text-gray-400">{service.description}</p>
-          </div>
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
+              className="bg-gray-900 p-8 rounded-xl shadow-2xl border border-gray-800 transform transition-all duration-300 hover:scale-[1.03] hover:shadow-glow-sm"
+            >
+              <div className="flex items-center mb-4">
+                {service.icon}
+                <h3 className="ml-4 text-2xl font-bold text-white">{service.title}</h3>
+              </div>
+              <p className="text-gray-400 leading-relaxed">
+                {service.description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </main>
   );

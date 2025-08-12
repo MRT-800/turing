@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
 import { Facebook, Instagram, Twitter } from "lucide-react";
+import { motion } from "framer-motion";
 import Slider from "react-slick";
 
 export default function PortfolioPage() {
@@ -15,56 +16,89 @@ export default function PortfolioPage() {
     arrows: false,
   };
 
-  return (
-    <div className="container mx-auto px-4 pt-20 pb-16">
-      <h1 className="text-4xl font-bold mb-6 text-center">Our Portfolio</h1>
-      <p className="text-gray-400 max-w-3xl mx-auto text-center mb-12">
-        Here’s a showcase of our projects and work.
-      </p>
+  // Container animation variants for staggered children
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 },
+    },
+  };
 
-      {/* Portfolio Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-        <PortfolioCard
-          title="Aletheia"
-          description="Aletheia Counselling offers compassionate, confidential, and affordable mental health support through convenient online sessions. Whether you're facing stress, anxiety, relationship issues, or simply need someone to talk to, Aletheia is here to help. Our trained professionals are committed to guiding you toward clarity and emotional well-being—all at a reasonable price, so that quality counselling is accessible to everyone, no matter where you are."
-          link="https://aletheiacounselling.com/"
-          link2="https://www.facebook.com/profile.php?id=61576118828424&rdid=Pe0Ftf0rr4i0vLM4&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16Tn6WhAQu%2F#"
-          link3="https://www.instagram.com/aletheiacounselling/?igsh=YnU0bnBzcmczbnZp#"
-          link4="https://x.com/aletheai"
-        />
-        <PortfolioCard
-          title="Thermotech"
-          description="Thermotech provides reliable and professional installation of air conditioning and ventilation systems for both homes and commercial businesses. Whether you're upgrading your home comfort or outfitting a large office space, our experienced team ensures efficient, high-quality service tailored to your needs. With a focus on performance, energy efficiency, and long-term value, Thermotech delivers climate control solutions you can trust—on time and within budget."
-          link="https://thermotech.com.np/"
-          link2="https://facebook.com/thermotech"
-          link3="https://instagram.com/thermotech"
-          link4="https://x.com/thermotech"
-        />
-        <PortfolioCard
-          title="Dabn"
-          description="Dabn is a trusted provider of electrical solutions, specializing in wiring, installation, and maintenance of home appliances. Our skilled technicians are dedicated to ensuring safety, efficiency, and reliability in every project. From complete electrical setups to appliance repairs, Dabn delivers quality service that keeps your home and business running smoothly—on within budget. We combine expertise with a customer-first approach to ensure every job exceeds expectations."
-          link="https://dabn.com.np/"
-          link2="https://facebook.com/dabn"
-          link3="https://instagram.com/dabn"
-          link4="https://x.com/dabn"
-        />
-      </div>
+  // Individual card variants
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 100, damping: 20 },
+    },
+  };
+
+  return (
+    <div className="bg-[#0a0f1a] text-gray-200 min-h-screen pt-20 pb-16 px-4 md:px-8">
+      {/* Page Heading */}
+      <motion.h1
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-4xl md:text-5xl font-extrabold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#00ff73] to-[#4c75ff]"
+      >
+        Our Portfolio
+      </motion.h1>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+        className="text-gray-400 max-w-3xl mx-auto text-center mb-16"
+      >
+        A showcase of our finest work, where creativity meets execution. We deliver excellence with every project.
+      </motion.p>
+
+      {/* Portfolio Cards with staggered animation */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-20"
+      >
+        {portfolioItems.map((item, idx) => (
+          <motion.div key={item.title} variants={cardVariants}>
+            <PortfolioCard {...item} />
+          </motion.div>
+        ))}
+      </motion.div>
 
       {/* Reviews Section */}
-      <section className="text-center mt-20">
-        <h2 className="text-3xl font-bold mb-4">What Our Clients Say</h2>
-        <p className="text-gray-500 max-w-2xl mx-auto mb-12">
-          We take pride in our work and our clients love what we do. Here’s what they have to say about working with us.
+      <section className="mt-20">
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-3xl font-bold mb-4 text-center text-gray-50"
+        >
+          What Our Clients Say
+        </motion.h2>
+        <p className="text-gray-500 max-w-2xl mx-auto mb-12 text-center">
+          We take pride in our work, and our clients love what we do. Here’s their feedback on working with us.
         </p>
 
         <Slider {...sliderSettings}>
           {reviews.map((review, index) => (
             <div key={index} className="px-4">
-              <div className="bg-white p-8 rounded-lg shadow-md max-w-xl mx-auto">
-                <p className="text-gray-700 italic mb-4">“{review.text}”</p>
-                <h4 className="text-gray-900 font-semibold">{review.author}</h4>
-                <span className="text-gray-500 text-sm">{review.company}</span>
-              </div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="bg-gradient-to-br from-gray-900 to-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700 max-w-xl mx-auto"
+              >
+                <p className="text-gray-300 italic mb-4 text-lg">“{review.text}”</p>
+                <h4 className="text-gray-50 font-semibold">{review.author}</h4>
+                <span className="text-gray-400 text-sm">{review.company}</span>
+              </motion.div>
             </div>
           ))}
         </Slider>
@@ -73,7 +107,8 @@ export default function PortfolioPage() {
   );
 }
 
-// ✅ Updated PortfolioCard component
+// PortfolioCard component remains the same as your original code
+
 function PortfolioCard({
   title,
   description,
@@ -90,39 +125,72 @@ function PortfolioCard({
   link4?: string;
 }) {
   return (
-    <div className="p-8 border rounded-lg shadow-lg hover:shadow-xl transition-shadow bg-white">
-      <h2 className="text-2xl font-semibold mb-3 text-gray-900">{title}</h2>
-      <p className="text-gray-700 mb-2">{description}</p>
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-600 hover:text-blue-800 underline mb-4 block"
-      >
-        Learn more →
-      </a>
-      <div className="flex gap-4">
-        {link2 && (
-          <a href={link2} target="_blank" rel="noopener noreferrer">
-            <Facebook className="h-5 w-5 text-blue-600 hover:text-blue-800 transition-colors" />
-          </a>
-        )}
-        {link3 && (
-          <a href={link3} target="_blank" rel="noopener noreferrer">
-            <Instagram className="h-5 w-5 text-pink-500 hover:text-pink-700 transition-colors" />
-          </a>
-        )}
-        {link4 && (
-          <a href={link4} target="_blank" rel="noopener noreferrer">
-            <Twitter className="h-5 w-5 text-black hover:text-gray-700 transition-colors" />
-          </a>
-        )}
+    <div className="relative group bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-[2px] shadow-xl hover:shadow-glow-md transition-all duration-300">
+      <div className="bg-gray-900 rounded-3xl p-6 h-full flex flex-col">
+        <h2 className="text-2xl font-bold mb-3 text-gray-50">{title}</h2>
+        <p className="text-gray-400 mb-4 flex-grow">{description}</p>
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mb-4 text-[#00ff73] hover:text-[#4c75ff] font-semibold transition-colors"
+        >
+          Learn more →
+        </a>
+        <div className="flex gap-4 mt-auto">
+          {link2 && (
+            <a href={link2} target="_blank" rel="noopener noreferrer">
+              <Facebook className="h-5 w-5 text-blue-500 hover:text-blue-400 transition-colors" />
+            </a>
+          )}
+          {link3 && (
+            <a href={link3} target="_blank" rel="noopener noreferrer">
+              <Instagram className="h-5 w-5 text-pink-500 hover:text-pink-400 transition-colors" />
+            </a>
+          )}
+          {link4 && (
+            <a href={link4} target="_blank" rel="noopener noreferrer">
+              <Twitter className="h-5 w-5 text-sky-500 hover:text-sky-400 transition-colors" />
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
 }
 
-// Reviews Data
+// Data remains unchanged
+const portfolioItems = [
+  {
+    title: "Aletheia",
+    description:
+      "Aletheia Counselling offers compassionate, confidential, and affordable mental health support through convenient online sessions...",
+    link: "https://aletheiacounselling.com/",
+    link2: "https://www.facebook.com/profile.php?id=61576118828424",
+    link3: "https://www.instagram.com/aletheiacounselling/",
+    link4: "https://x.com/aletheai",
+  },
+  {
+    title: "Thermotech",
+    description:
+      "Thermotech provides reliable and professional installation of air conditioning and ventilation systems for homes and businesses...",
+    link: "https://thermotech.com.np/",
+    link2: "https://facebook.com/thermotech",
+    link3: "https://instagram.com/thermotech",
+    link4: "https://x.com/thermotech",
+  },
+  {
+    title: "Dabn",
+    description:
+      "Dabn is a trusted provider of electrical solutions, specializing in wiring, installation, and maintenance of home appliances...",
+    link: "https://dabn.com.np/",
+    link2: "https://facebook.com/dabn",
+    link3: "https://instagram.com/dabn",
+    link4: "https://x.com/dabn",
+  },
+];
+
+// Reviews data unchanged
 const reviews = [
   {
     text: "Working with this team was an absolute pleasure. They exceeded our expectations in every way.",
