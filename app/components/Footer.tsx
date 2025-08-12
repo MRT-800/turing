@@ -1,4 +1,12 @@
-import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram,
+} from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -15,7 +23,8 @@ const Footer = () => {
             </span>
           </Link>
           <p className="text-sm leading-relaxed max-w-xs">
-            Innovating technology and delivering excellence in research and development solutions.
+            Innovating technology and delivering excellence in research and
+            development solutions.
           </p>
         </div>
 
@@ -53,21 +62,21 @@ const Footer = () => {
                 href="mailto:info@turingrd.com"
                 className="hover:text-[#00ff73] transition-colors duration-300"
               >
-                info@turingrd.com
+                info@turingresearch.com.np
               </a>
             </li>
             <li className="flex items-center gap-3">
               <Phone className="h-5 w-5 text-[#00ff73]" />
               <a
-                href="tel:+977 9844561238"
+                href="tel:+977 9818902896"
                 className="hover:text-[#00ff73] transition-colors duration-300"
               >
-                +977 9844561238
+                +977 9818902896
               </a>
             </li>
             <li className="flex items-start gap-3">
               <MapPin className="h-5 w-5 text-[#00ff73] mt-1" />
-              <span>kalanki, kathmandu</span>
+              <span>Ramhiti-6, kathmandu</span>
             </li>
           </ul>
         </div>
@@ -76,23 +85,28 @@ const Footer = () => {
         <div>
           <h4 className="font-semibold mb-6 text-white text-lg">Follow Us</h4>
           <div className="flex space-x-5">
-            {[{
-              icon: Facebook,
-              href: "https://facebook.com",
-              label: "Facebook",
-            },{
-              icon: Twitter,
-              href: "https://twitter.com",
-              label: "Twitter",
-            },{
-              icon: Linkedin,
-              href: "https://linkedin.com",
-              label: "LinkedIn",
-            },{
-              icon: Instagram,
-              href: "https://instagram.com",
-              label: "Instagram",
-            }].map(({ icon: Icon, href, label }) => (
+            {[
+              {
+                icon: Facebook,
+                href: "https://facebook.com",
+                label: "Facebook",
+              },
+              {
+                icon: Twitter,
+                href: "https://twitter.com",
+                label: "Twitter",
+              },
+              {
+                icon: Linkedin,
+                href: "https://linkedin.com",
+                label: "LinkedIn",
+              },
+              {
+                icon: Instagram,
+                href: "https://instagram.com",
+                label: "Instagram",
+              },
+            ].map(({ icon: Icon, href, label }) => (
               <a
                 key={label}
                 href={href}
@@ -110,7 +124,8 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-800 py-6 text-center text-sm text-gray-500 select-none">
-        &copy; {new Date().getFullYear()} Turing and Research Development. All rights reserved.
+        &copy; {new Date().getFullYear()} Turing and Research Development. All
+        rights reserved.
       </div>
     </footer>
   );

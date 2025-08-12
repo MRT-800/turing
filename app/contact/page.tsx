@@ -26,9 +26,9 @@ export default function ContactPage() {
         </div>
 
         {/* Office Info & Map */}
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Office Info */}
-          <div className="bg-gray-900/50 backdrop-blur-lg rounded-2xl shadow-lg border border-gray-700 p-8">
+        {/* <div className="grid md:grid-cols-2 gap-12"> */}
+        {/* Office Info */}
+        {/* <div className="bg-gray-900/50 backdrop-blur-lg rounded-2xl shadow-lg border border-gray-700 p-8">
             <h2 className="text-2xl font-bold mb-6">Visit Our Office</h2>
             <h3 className="text-xl font-semibold text-[#00ff73]">
               Headquarters
@@ -43,8 +43,7 @@ export default function ContactPage() {
 
             <div className="mt-6 text-gray-400">
               <p>
-                <strong className="text-white">Email:</strong>{" "}
-                info@turingrd.com
+                <strong className="text-white">Email:</strong> info@turingrd.com
               </p>
               <p>
                 <strong className="text-white">Phone:</strong> +977 9844561238
@@ -52,7 +51,7 @@ export default function ContactPage() {
             </div>
 
             {/* Social Links */}
-            <div className="flex gap-4 mt-8">
+        {/* <div className="flex gap-4 mt-8">
               <a
                 href="https://x.com/"
                 className="p-3 bg-gray-800 rounded-full hover:bg-[#00ff73] hover:text-black transition-all shadow-md hover:shadow-[#00ff73]/40"
@@ -72,10 +71,10 @@ export default function ContactPage() {
                 <FaInstagram size={20} />
               </a>
             </div>
-          </div>
+          </div> */}
 
-          {/* Map */}
-          <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-700 h-80 md:h-auto">
+        {/* Map */}
+        {/* <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-700 h-80 md:h-auto">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.0877848709074!2d85.3061110150614!3d27.64694398281282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1909f8b376db%3A0x45b5e6aa5b7a6ae1!2sKathmandu!5e0!3m2!1sen!2snp!4v1712741690098!5m2!1sen!2snp"
               width="100%"
@@ -84,8 +83,8 @@ export default function ContactPage() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
       </div>
     </section>
   );
