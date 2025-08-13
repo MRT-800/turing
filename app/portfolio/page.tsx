@@ -36,7 +36,7 @@ export default function PortfolioPage() {
         transition={{ duration: 0.6 }}
         className="text-center mb-16"
       >
-        <h1 className="text-5xl md:text-6xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#00ff73] to-[#4c75ff]">
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-4 py-8 text-transparent bg-clip-text bg-gradient-to-r from-[#00ff73] to-[#4c75ff]">
           We Build Stunning Websites & Marketing Campaigns
         </h1>
         <p className="text-gray-400 max-w-2xl mx-auto mb-6">
@@ -256,12 +256,12 @@ const reviews = [
     company: "Aletheia Counselling",
   },
   {
-    text: "Professional, efficient, and results-driven. Our project was delivered ahead of schedule and under budget.",
+    text: "Excellent communication and quality of work. Highly recommend.",
     author: "Debendra Bartaula",
     company: "Thermotech",
   },
   {
-    text: "The communication and quality of work were top-notch. Highly recommended!",
+    text: "Professional and efficient. Our project was completed on time and within budget.",
     author: "Bhup Raj Neupane",
     company: "Dabn",
   },

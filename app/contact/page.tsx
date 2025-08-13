@@ -11,7 +11,7 @@ export default function ContactPage() {
       <div className="relative container mx-auto px-6 max-w-6xl">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h1 className="text-5xl font-extrabold bg-gradient-to-r from-[#00ff73] to-[#00e6ff] bg-clip-text text-transparent">
+          <h1 className="text-5xl font-extrabold bg-gradient-to-r py-8 from-[#00ff73] to-[#00e6ff] bg-clip-text text-transparent">
             Contact Us
           </h1>
           <p className="text-lg text-gray-400 mt-4">

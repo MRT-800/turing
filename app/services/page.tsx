@@ -243,7 +243,7 @@ export default function ServicesPage() {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-4xl md:text-5xl font-extrabold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#00ff73] to-[#4c75ff]"
+          className="text-4xl md:text-5xl font-extrabold text-center mb-6 py-8 text-transparent bg-clip-text bg-gradient-to-r from-[#00ff73] to-[#4c75ff]"
         >
           Our Services
         </motion.h1>
