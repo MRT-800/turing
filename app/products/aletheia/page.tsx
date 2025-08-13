@@ -59,7 +59,7 @@ export default function OogwayPage() {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-4">
-              Oogway Consultation
+              Aletheia Counselling
             </h1>
             <p className="text-lg text-gray-400 leading-relaxed mb-8">
               Our expert consultation service provides tailored guidance for your research and development needs. Our team
@@ -75,7 +75,7 @@ export default function OogwayPage() {
           >
             <img
               src="https://placehold.co/800x500/0a0f1a/ffffff?text=R%26D+Consultation"
-              alt="Oogway Consultation"
+              alt="Aletheia Counselling"
               className="rounded-xl w-full h-auto object-cover"
             />
           </motion.div>

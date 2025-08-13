@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/product", label: "Product" },
+  { href: "/products", label: "Products" },
   { href: "/services", label: "Services" },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/contact", label: "Contact Us" },
@@ -51,7 +51,7 @@ const Navbar = () => {
           <img
             src="/logo.png"
             alt="Turing R&D"
-            className="w-12 h-10"
+            className="w-10 h-13"
           />
           <span className="font-semibold tracking-wide text-lg text-white group-hover:text-[#00ff73] transition-colors">
             Turing R&D

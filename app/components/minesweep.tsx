@@ -158,79 +158,86 @@ export default function Minesweeper() {
         zIndex: 20,
       }}
     >
+      {/* Inner frame wrapper */}
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${COLS}, 1fr)`,
-          gap: 3,
-          flexGrow: 1,
-          marginBottom: 10,
-          cursor: gameOver || win ? "default" : "pointer",
+          backgroundColor: "#0d1424", // darker frame background
+          padding: 8, // space so top-left cell doesn’t touch
+          borderRadius: 10,
         }}
       >
-        {board.map((row, r) =>
-          row.map((cell, c) => {
-            const isMine = cell.isMine && cell.isRevealed;
-            const isFlagged = cell.isFlagged;
-            const isRevealed = cell.isRevealed;
-            const neighborCount = cell.neighborMines;
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: `repeat(${COLS}, 1fr)`,
+            gap: 3,
+            flexGrow: 1,
+            marginBottom: 10,
+            cursor: gameOver || win ? "default" : "pointer",
+          }}
+        >
+          {board.map((row, r) =>
+            row.map((cell, c) => {
+              const isMine = cell.isMine && cell.isRevealed;
+              const isFlagged = cell.isFlagged;
+              const isRevealed = cell.isRevealed;
+              const neighborCount = cell.neighborMines;
 
-            let bgColor = "#121a2b"; // default unrevealed
-            let color = "#00ff73";
-            let content: string | number = "";
+              let bgColor = "#121a2b"; // default unrevealed
+              let color = "#00ff73";
+              let content: string | number = "";
 
-            if (isRevealed) {
-              // Brighter background for revealed cells
-              bgColor = "#153447"; // brighter blueish background
-
-              if (isMine) {
-                content = "💣";
-                color = "#ff4d4d";
-              } else if (neighborCount > 0) {
-                content = neighborCount;
-                color =
-                  neighborCount === 1
-                    ? "#00ff73"
-                    : neighborCount === 2
-                    ? "#5aff82"
-                    : neighborCount === 3
-                    ? "#aaff9d"
-                    : "#d0ffce";
+              if (isRevealed) {
+                bgColor = "#153447"; // brighter for revealed
+                if (isMine) {
+                  content = "💣";
+                  color = "#ff4d4d";
+                } else if (neighborCount > 0) {
+                  content = neighborCount;
+                  color =
+                    neighborCount === 1
+                      ? "#00ff73"
+                      : neighborCount === 2
+                      ? "#5aff82"
+                      : neighborCount === 3
+                      ? "#aaff9d"
+                      : "#d0ffce";
+                }
+              } else if (isFlagged) {
+                content = "🚩";
+                bgColor = "#001a0c";
+                color = "#ffb84d";
               }
-            } else if (isFlagged) {
-              content = "🚩";
-              bgColor = "#001a0c";
-              color = "#ffb84d";
-            }
 
-            return (
-              <div
-                key={`${r}-${c}`}
-                onClick={() => handleCellClick(r, c)}
-                onContextMenu={(e) => handleRightClick(e, r, c)}
-                style={{
-                  width: 60,
-                  height: 45,
-                  backgroundColor: bgColor,
-                  color: color,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: 4,
-                  fontWeight: "bold",
-                  fontSize: 20,
-                  userSelect: "none",
-                  boxShadow: isRevealed
-                    ? "inset 0 0 10px 3px #00ff73"
-                    : "0 0 3px #00ff73",
-                  transition: "background-color 0.2s ease, box-shadow 0.3s ease",
-                }}
-              >
-                {content}
-              </div>
-            );
-          })
-        )}
+              return (
+                <div
+                  key={`${r}-${c}`}
+                  onClick={() => handleCellClick(r, c)}
+                  onContextMenu={(e) => handleRightClick(e, r, c)}
+                  style={{
+                    width: 60,
+                    height: 45,
+                    backgroundColor: bgColor,
+                    color: color,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: 4,
+                    fontWeight: "bold",
+                    fontSize: 20,
+                    userSelect: "none",
+                    boxShadow: isRevealed
+                      ? "inset 0 0 10px 3px #00ff73"
+                      : "0 0 3px #00ff73",
+                    transition: "background-color 0.2s ease, box-shadow 0.3s ease",
+                  }}
+                >
+                  {content}
+                </div>
+              );
+            })
+          )}
+        </div>
       </div>
 
       <div

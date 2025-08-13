@@ -4,31 +4,31 @@ import React from "react";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-// Mock data for the products.
+// Updated product data
 const products = [
   {
-    id: "oogway",
-    title: "Oogway Consultation",
+    id: "aletheia",
+    title: "Aletheia Counselling",
     description:
-      "Our expert consultation service provides tailored guidance for your research and development needs. Our team of experienced consultants works closely with you to understand your unique challenges and develop customized solutions that drive innovation and growth.",
-    image: "https://placehold.co/600x400/0a0f1a/ffffff?text=R%26D+Consultation",
-    link: "/product/oogway",
+      "Affordable, expert counselling for research and development projects. We provide personalized guidance to overcome challenges, maximize efficiency, and drive innovation, helping your business reach its full potential.",
+    image: "/councelling.jpg",
+    // link: "/product/oogway",
   },
   {
     id: "zooming",
     title: "Zooming",
     description:
-      "Our advanced video conferencing platform designed specifically for research collaboration. Connect with colleagues and partners around the world with crystal-clear audio and video, share research findings in real-time, and collaborate on projects seamlessly.",
-    image: "https://placehold.co/600x400/0a0f1a/ffffff?text=Video+Collaboration",
-    link: "/product/zooming",
+      "Secure and reliable video collaboration platform designed for professionals. Enjoy encrypted calls, seamless connectivity, and real-time collaboration to keep your team productive and your data safe.",
+    image: "/zoom.jpg",
+    // link: "/product/zooming",
   },
   {
-    id: "data-analytics",
-    title: "Data Analytics Suite",
+    id: "seo-business-analysis",
+    title: "SEO & Business Analysis",
     description:
-      "Powerful data analytics tools designed for research professionals. Our suite includes advanced statistical analysis, machine learning capabilities, and interactive visualization tools to help you extract meaningful insights from complex research data.",
-    image: "https://placehold.co/600x400/0a0f1a/ffffff?text=Data+Analytics",
-    link: "/product/zooming",
+      "Our in-house SEO & Business Analysis platform helps businesses optimize their online presence and make data-driven decisions. From keyword research and competitor analysis to actionable insights, we provide tools that drive growth and maximize ROI.",
+    image: "/seo.jpg",
+    // link: "/product/seo-business-analysis",
   },
 ];
 
@@ -47,7 +47,7 @@ const ProductPage = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl md:text-5xl font-extrabold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-[#00ff73] to-[#4c75ff]"
+          className="text-4xl md:text-5xl font-extrabold py-8 text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-[#00ff73] to-[#4c75ff]"
         >
           Our Innovative Products
         </motion.h1>
@@ -64,31 +64,38 @@ const ProductPage = () => {
               className="group grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center bg-gray-900 rounded-3xl p-6 md:p-12 shadow-2xl transition-all duration-300 hover:shadow-glow-md hover:bg-gray-800"
             >
               {/* Product Image */}
-              <motion.div 
-                className={`w-full rounded-2xl overflow-hidden shadow-lg transform transition-transform duration-300 group-hover:scale-105 ${index % 2 !== 0 ? 'md:order-2' : ''}`}
+              <motion.div
+                className={`w-full rounded-2xl overflow-hidden shadow-lg transform transition-transform duration-300 group-hover:scale-105 ${
+                  index % 2 !== 0 ? "md:order-2" : ""
+                }`}
               >
                 <img
                   src={product.image}
                   alt={product.title}
-                  className="w-full h-auto object-cover"
+                  className="w-full max-h-80 md:max-h-[400px] object-cover"
                 />
               </motion.div>
 
               {/* Product Content */}
-              <div className={`flex flex-col justify-center ${index % 2 !== 0 ? 'md:order-1' : ''}`}>
+              <div
+                className={`flex flex-col justify-center ${
+                  index % 2 !== 0 ? "md:order-1" : ""
+                }`}
+              >
                 <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-50">
                   {product.title}
                 </h2>
                 <p className="text-gray-400 mb-8 leading-relaxed">
                   {product.description}
                 </p>
-                <a
+                {/* Optional Learn More Button */}
+                {/* <a
                   href={product.link}
                   className="inline-flex items-center self-start px-8 py-4 rounded-full bg-gradient-to-r from-[#00ff73] to-cyan-500 text-[#0a0f1a] font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[#00ff73]/50"
                 >
                   Learn More
                   <ArrowRight className="ml-3 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                </a>
+                </a> */}
               </div>
             </motion.div>
           ))}

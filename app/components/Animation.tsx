@@ -55,15 +55,14 @@ const Hero = () => {
             variants={textItem}
             className="text-4xl sm:text-5xl font-extrabold leading-tight mb-4"
           >
-            Pioneering Innovation in Research & Development
+            From Concept to Clicks — We Build Your Online Presence.
           </motion.h1>
 
           <motion.p
             variants={textItem}
             className="text-gray-400 mb-8 text-lg sm:text-xl"
           >
-            We craft cutting-edge technology solutions that empower industries,
-            inspire change, and shape the future.
+            Marketing. Web Development. Chatbots. Business Intelligence. If it’s digital, we make it happen.
           </motion.p>
 
           <motion.div
@@ -112,7 +111,7 @@ const Hero = () => {
               borderBottomRightRadius: "1.8rem",
               borderBottomLeftRadius: "0rem",
               width: 440,
-              height: 400,
+              height: 420,
               maxWidth: "100vw",
             }}
           >

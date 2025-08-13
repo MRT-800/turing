@@ -2,27 +2,36 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { FaMicroscope, FaBrain, FaShieldAlt } from "react-icons/fa";
+import { FaBullhorn, FaCode, FaRobot, FaChartLine } from "react-icons/fa";
 
 const features = [
   {
-    icon: <FaMicroscope className="text-4xl text-[#00ff73]" />,
-    title: "Live Research Updates",
-    description: "Stay up to date with cutting-edge discoveries in real time.",
+    icon: <FaBullhorn className="text-4xl text-[#00ff73]" />,
+    title: "Digital Marketing",
+    description:
+      "Data-driven strategies to grow your brand, engage your audience, and boost conversions.",
   },
   {
-    icon: <FaBrain className="text-4xl text-[#00ff73]" />,
-    title: "AI-Powered Insights",
-    description: "Personalized research recommendations using machine learning.",
+    icon: <FaCode className="text-4xl text-[#00ff73]" />,
+    title: "Web Development",
+    description:
+      "Custom, responsive websites and apps built for performance, speed, and user experience.",
   },
   {
-    icon: <FaShieldAlt className="text-4xl text-[#00ff73]" />,
-    title: "Blockchain Security",
-    description: "Ensuring research integrity with decentralized verification.",
+    icon: <FaRobot className="text-4xl text-[#00ff73]" />,
+    title: "AI & Chatbots",
+    description:
+      "Smart automation tools and chatbots that enhance customer support and streamline workflows.",
+  },
+  {
+    icon: <FaChartLine className="text-4xl text-[#00ff73]" />,
+    title: "Business Intelligence",
+    description:
+      "Transform raw data into actionable insights to make smarter, faster business decisions.",
   },
 ];
 
-const RDShowcase = () => {
+const ServicesShowcase = () => {
   return (
     <section className="relative bg-[#0a0f1a] text-white py-20 px-6">
       <div className="container mx-auto max-w-7xl">
@@ -35,11 +44,12 @@ const RDShowcase = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
-            Innovating the Future of{" "}
-            <span className="text-[#00ff73]">Research & Development</span>
+            Comprehensive{" "}
+            <span className="text-[#00ff73]">Digital Solutions</span>
           </h2>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Cutting-edge technology solutions tailored for breakthrough innovation.
+            From marketing to development, AI to business intelligence — we
+            deliver everything your brand needs to thrive online.
           </p>
         </motion.div>
 
@@ -52,7 +62,7 @@ const RDShowcase = () => {
             visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
             hidden: { opacity: 0 },
           }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-4 gap-8"
         >
           {features.map((feature, i) => (
             <motion.div
@@ -91,4 +101,4 @@ const RDShowcase = () => {
   );
 };
 
-export default RDShowcase;
+export default ServicesShowcase;

@@ -3,9 +3,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import {
-  FaClock,
-  FaBrain,
-  FaShieldAlt,
+  FaBullhorn,
+  FaCode,
+  FaRobot,
+  FaChartLine,
   FaAward,
   FaUsers,
   FaGlobe,
@@ -16,19 +17,19 @@ const values = [
     icon: <FaAward className="h-8 w-8 text-[#00ff73]" />,
     title: "Excellence",
     description:
-      "We pursue excellence in everything we do, from research methodologies to product development.",
+      "We deliver top-quality digital solutions, ensuring every project exceeds client expectations.",
   },
   {
     icon: <FaUsers className="h-8 w-8 text-[#00ff73]" />,
     title: "Collaboration",
     description:
-      "We believe in the power of collaboration across disciplines, institutions, and borders.",
+      "We work closely with our clients to understand their goals and co-create impactful solutions.",
   },
   {
     icon: <FaGlobe className="h-8 w-8 text-[#00ff73]" />,
-    title: "Impact",
+    title: "Innovation",
     description:
-      "We measure our success by the positive impact our work has on science, society, and the planet.",
+      "We embrace the latest technologies and creative strategies to keep your brand ahead in the digital world.",
   },
 ];
 
@@ -84,21 +85,21 @@ const AboutPage = () => {
         >
           <motion.h1
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold mb-6"
+            className="text-4xl md:text-5xl font-bold mb-6 py-8"
           >
-            Innovating the Future of
+            Crafting Powerful Digital Experiences
             <br />
-            <span className="text-[#00ff73]">Research & Development</span>
+            <span className="text-[#00ff73]">For Your Brand's Success</span>
           </motion.h1>
           <motion.p
             variants={itemVariants}
             className="text-xl text-gray-400 max-w-3xl mx-auto"
           >
-            New quantum computing model speeds up simulations.
+            We provide end-to-end digital solutions including marketing, web development, AI-powered chatbots, and business intelligence — all designed to help your business grow and thrive online.
           </motion.p>
         </motion.div>
 
-        {/* Mission Section */}
+        {/* Mission & Vision Section */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -109,17 +110,10 @@ const AboutPage = () => {
           <motion.div variants={itemVariants}>
             <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
             <p className="text-gray-400 mb-6">
-              At Turing R&D, we're on a mission to accelerate scientific
-              discovery and technological innovation through cutting-edge
-              research and development. We believe that by combining quantum
-              computing, artificial intelligence, and blockchain technology, we
-              can solve some of the world's most complex problems.
+              Our mission is to empower businesses with cutting-edge digital solutions that enhance online presence, engage audiences, and drive measurable results.
             </p>
             <p className="text-gray-400">
-              Our interdisciplinary team of scientists, engineers, and product
-              developers work together to create tools and solutions that
-              empower researchers and organizations to push the boundaries of
-              what's possible.
+              Through a combination of innovative web development, intelligent automation, and data-driven marketing strategies, we help brands stay ahead in a rapidly evolving digital landscape.
             </p>
           </motion.div>
           <motion.div
@@ -128,20 +122,15 @@ const AboutPage = () => {
           >
             <h3 className="text-3xl font-bold text-white mb-4">Our Vision</h3>
             <p className="text-gray-400 mb-6">
-              We envision a future where scientific research is accelerated by
-              orders of magnitude, where discoveries that once took decades can
-              be made in months or even weeks.
+              We envision a world where every business can leverage technology to its fullest potential — from AI-driven automation to actionable business insights.
             </p>
             <p className="text-gray-400">
-              By democratizing access to advanced research tools and
-              methodologies, we aim to create a more collaborative,
-              transparent, and efficient global research ecosystem that
-              addresses humanity's greatest challenges.
+              By providing scalable, secure, and innovative digital solutions, we aim to transform the way brands connect with their customers and make data-driven decisions with confidence.
             </p>
           </motion.div>
         </motion.div>
 
-        {/* Research Areas */}
+        {/* Services Section */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -153,27 +142,33 @@ const AboutPage = () => {
             variants={itemVariants}
             className="text-3xl font-bold text-center mb-12"
           >
-            Our Research Focus
+            Our Core Services
           </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[ 
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {[
               {
-                icon: FaClock,
-                title: "Live Research Updates",
+                icon: FaBullhorn,
+                title: "Digital Marketing",
                 description:
-                  "Stay up to date with cutting-edge discoveries in real time. Our platform continuously monitors and analyzes research publications, preprints, and conference proceedings to deliver the most relevant updates to your field.",
+                  "Data-driven strategies to grow your audience, boost sales, and strengthen your brand presence.",
               },
               {
-                icon: FaBrain,
-                title: "AI-Powered Insights",
+                icon: FaCode,
+                title: "Web Development",
                 description:
-                  "Personalized research recommendations using machine learning. Our AI systems analyze your research interests, methodologies, and previous work to suggest relevant papers, potential collaborators, and new research directions.",
+                  "Custom, responsive websites and web applications built for performance, speed, and a great user experience.",
               },
               {
-                icon: FaShieldAlt,
-                title: "Blockchain Security",
+                icon: FaRobot,
+                title: "AI & Chatbots",
                 description:
-                  "Ensuring research integrity with decentralized verification. Our blockchain solutions create immutable records of research data, methodologies, and results, addressing the reproducibility crisis and building trust in scientific findings.",
+                  "Intelligent automation and AI-powered chatbots to improve customer engagement and operational efficiency.",
+              },
+              {
+                icon: FaChartLine,
+                title: "Business Intelligence",
+                description:
+                  "Transform raw data into actionable insights to help you make smarter, faster business decisions.",
               },
             ].map(({ icon: Icon, title, description }, i) => (
               <motion.div
@@ -217,7 +212,7 @@ const AboutPage = () => {
             variants={itemVariants}
             className="text-center text-gray-400 max-w-3xl mx-auto mb-12"
           >
-            The principles that guide our work and culture
+            Principles that guide our work, culture, and client relationships
           </motion.p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {values.map((value, index) => (
@@ -255,11 +250,10 @@ const AboutPage = () => {
           className="bg-[#1e2a47] rounded-3xl p-8 text-center shadow-lg border border-gray-700"
         >
           <h2 className="text-2xl font-bold text-white mb-4">
-            Join Us in Shaping the Future
+            Let’s Build Your Digital Future
           </h2>
           <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-            Whether you're looking to collaborate on research, explore our
-            products, or join our team, we'd love to hear from you.
+            Whether you want to elevate your online presence, implement AI-driven automation, or leverage data for smarter decisions, our team is ready to help.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a
